@@ -88,10 +88,6 @@ controller.player2.onEvent(ControllerEvent.Connected, function () {
 })
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
-game.showLongText("Loading.", DialogLayout.Full)
-game.showLongText("Loading..", DialogLayout.Full)
-game.showLongText("Loading...", DialogLayout.Bottom)
-game.showLongText("Loading Complete Press A To continue", DialogLayout.Bottom)
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
