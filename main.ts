@@ -2,7 +2,7 @@ namespace SpriteKind {
     export const Player2 = SpriteKind.create()
 }
 controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
+    mySprite2.setImage(img`
         . . . . . . . . . . . . . . . . 
         . . . . f f f f f f f . . . . . 
         . . . f 2 2 2 2 2 2 2 f . . . . 
@@ -20,7 +20,7 @@ controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Press
         . . . . f f . . . f f . . . . . 
         . . . . . . . . . . . . . . . . 
         `)
-    mySprite.sayText("SUS")
+    mySprite2.sayText("SUS", 5000, true)
 })
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setImage(img`
@@ -42,6 +42,10 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `)
     mySprite.sayText("SUS", 1000, true)
+})
+info.onLifeZero(function () {
+    game.over(false)
+    game.reset()
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     game.setDialogTextColor(1)
@@ -126,3 +130,22 @@ game.setDialogFrame(img`
     1 . 1 1 1 1 1 1 1 1 1 1 1 . 1 
     . 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
     `)
+let item = sprites.create(img`
+    . . . . . . . e c 7 . . . . . . 
+    . . . . e e e c 7 7 e e . . . . 
+    . . c e e e e c 7 e 2 2 e e . . 
+    . c e e e e e c 6 e e 2 2 2 e . 
+    . c e e e 2 e c c 2 4 5 4 2 e . 
+    c e e e 2 2 2 2 2 2 4 5 5 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 4 4 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 2 2 e 
+    c e e 2 2 2 2 2 2 2 2 2 2 4 2 e 
+    . e e e 2 2 2 2 2 2 2 2 2 4 e . 
+    . 2 e e 2 2 2 2 2 2 2 2 4 2 e . 
+    . . 2 e e 2 2 2 2 2 4 4 2 e . . 
+    . . . 2 2 e e 4 4 4 2 e e . . . 
+    . . . . . 2 2 e e e e . . . . . 
+    `, SpriteKind.Food)
+info.setLife(3)
