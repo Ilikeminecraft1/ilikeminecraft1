@@ -1,6 +1,27 @@
 namespace SpriteKind {
     export const Player2 = SpriteKind.create()
 }
+controller.player2.onButtonEvent(ControllerButton.B, ControllerButtonEvent.Pressed, function () {
+    mySprite.setImage(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . f f f f f f f . . . . . 
+        . . . f 2 2 2 2 2 2 2 f . . . . 
+        . . . f 2 f f f f 2 2 f . . . . 
+        . . . f f 9 9 9 9 f f f . . . . 
+        . . . f 2 f f f f 2 2 f . . . . 
+        . . . f 2 2 2 2 2 2 2 f . . . . 
+        . . . f 2 2 2 2 2 2 2 f . . . . 
+        . . . f 2 2 2 2 2 2 2 f . . . . 
+        . . . f 2 2 2 2 2 2 2 f . . . . 
+        . . . f 2 2 f f f 2 2 f . . . . 
+        . . . f 2 2 f . f 2 2 f . . . . 
+        . . . f 2 2 f . f 2 2 f . . . . 
+        . . . f 2 2 f . f 2 2 f . . . . 
+        . . . . f f . . . f f . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `)
+    mySprite.sayText("SUS")
+})
 controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
     mySprite.setImage(img`
         . . . . . . . . . . . . . . . . 
@@ -21,27 +42,6 @@ controller.B.onEvent(ControllerButtonEvent.Pressed, function () {
         . . . . . . . . . . . . . . . . 
         `)
     mySprite.sayText("SUS", 1000, true)
-})
-controller.player2.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
-    mySprite.setImage(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . f f f f f f f . . . . . 
-        . . . f 2 2 2 2 2 2 2 f . . . . 
-        . . . f 2 f f f f 2 2 f . . . . 
-        . . . f f 9 9 9 9 f f f . . . . 
-        . . . f 2 f f f f 2 2 f . . . . 
-        . . . f 2 2 2 2 2 2 2 f . . . . 
-        . . . f 2 2 2 2 2 2 2 f . . . . 
-        . . . f 2 2 2 2 2 2 2 f . . . . 
-        . . . f 2 2 2 2 2 2 2 f . . . . 
-        . . . f 2 2 f f f 2 2 f . . . . 
-        . . . f 2 2 f . f 2 2 f . . . . 
-        . . . f 2 2 f . f 2 2 f . . . . 
-        . . . f 2 2 f . f 2 2 f . . . . 
-        . . . . f f . . . f f . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `)
-    mySprite.sayText("SUS")
 })
 controller.player1.onButtonEvent(ControllerButton.A, ControllerButtonEvent.Pressed, function () {
     game.setDialogTextColor(1)
@@ -88,6 +88,10 @@ controller.player2.onEvent(ControllerEvent.Connected, function () {
 })
 let mySprite2: Sprite = null
 let mySprite: Sprite = null
+game.showLongText("Loading.", DialogLayout.Full)
+game.showLongText("Loading..", DialogLayout.Full)
+game.showLongText("Loading...", DialogLayout.Bottom)
+game.showLongText("Loading Complete Press A To continue", DialogLayout.Bottom)
 mySprite = sprites.create(img`
     . . . . . . f f f f . . . . . . 
     . . . . f f f 2 2 f f f . . . . 
@@ -110,19 +114,19 @@ mySprite.setStayInScreen(true)
 scene.setBackgroundColor(7)
 controller.moveSprite(mySprite, 100, 100)
 game.setDialogFrame(img`
-    f 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
-    1 f 1 1 1 1 1 1 1 1 1 1 1 f 1 
-    1 1 7 1 1 1 1 1 1 1 1 1 7 1 1 
-    1 1 1 4 1 1 1 1 1 1 1 4 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 1 f f f f f f f 1 1 1 1 
-    1 1 1 4 1 1 1 1 1 1 1 4 1 1 1 
-    1 1 7 1 1 1 1 1 1 1 1 1 7 1 1 
-    1 f 1 1 1 1 1 1 1 1 1 1 1 f 1 
-    f 1 1 1 1 1 1 1 1 1 1 1 1 1 f 
+    . 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
+    1 . 1 1 1 1 1 1 1 1 1 1 1 . 1 
+    1 1 . 1 1 1 1 1 1 1 1 1 . 1 1 
+    1 1 1 . 1 1 1 1 1 1 1 . 1 1 1 
+    1 1 1 1 . . f f f f . 1 1 1 1 
+    1 1 1 1 . f 2 f f 2 f 1 1 1 1 
+    1 1 1 1 . f f 9 9 f f 1 1 1 1 
+    1 1 1 1 . f 2 f f 2 f 1 1 1 1 
+    1 1 1 1 . . f . . f . 1 1 1 1 
+    1 1 1 1 . . . . . . . 1 1 1 1 
+    1 1 1 1 . . . . . . . 1 1 1 1 
+    1 1 1 . 1 1 1 1 1 1 1 . 1 1 1 
+    1 1 . 1 1 1 1 1 1 1 1 1 . 1 1 
+    1 . 1 1 1 1 1 1 1 1 1 1 1 . 1 
+    . 1 1 1 1 1 1 1 1 1 1 1 1 1 . 
     `)
